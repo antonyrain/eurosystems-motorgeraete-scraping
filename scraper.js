@@ -1,6 +1,6 @@
 const puppeteer = require('puppeteer')
 const connectDB = require('./connectDB')
-const exportData = require('./exportData')
+const savingData = require('./savingData')
 
 const URL = 'https://www.eurosystems-motorgeraete.de/geraete/'
 
@@ -52,8 +52,8 @@ async function run (url) {
                 timestamp: Math.floor(Date.now() / 1000)
             }
 
-            // export data to MongoDB 
-            exportData(obj)
+            // saving data to MongoDB 
+            savingData(obj)
 
         } catch(error) {console.error(error)}
         counter ++

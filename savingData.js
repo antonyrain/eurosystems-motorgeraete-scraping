@@ -10,9 +10,9 @@ const exportData = (obj) => {
             required: true,
         })
         data.save()
-        console.log('Data export to database SUCCESS')
+        console.log('Data saving to database SUCCESS')
     } catch (error) {
-        console.error('Data export to database FAIL')
+        console.error('Data saving to database FAIL')
     }
 }
 
