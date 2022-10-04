@@ -39,20 +39,23 @@ async function run (url) {
         await new Promise(r => setTimeout(r, 1000))
 
         // getting target data
-        const category = await page.$eval(CATEGORY_SELECTOR, el => el.textContent)
-        const name = await page.$eval(NAME_SELECTOR, el => el.textContent)
-        const [element] = await page.$x(PRICE_XPATH)
-        const price = await(await element.getProperty('textContent')).jsonValue()
+        try {
+            const category = await page.$eval(CATEGORY_SELECTOR, el => el.textContent)
+            const name = await page.$eval(NAME_SELECTOR, el => el.textContent)
+            const [element] = await page.$x(PRICE_XPATH)
+            const price = await(await element.getProperty('textContent')).jsonValue()
 
-        const obj = {
-            category: category,
-            name: name,
-            price: price,
-            timestamp: Math.floor(Date.now() / 1000)
-        }
+            const obj = {
+                category: category,
+                name: name,
+                price: price,
+                timestamp: Math.floor(Date.now() / 1000)
+            }
 
-        // export data to MongoDB 
-        exportData(obj)
+            // export data to MongoDB 
+            exportData(obj)
+
+        } catch(error) {console.error(error)}
         counter ++
     }
 }
