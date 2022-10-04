@@ -18,7 +18,8 @@ async function run (url) {
     const page = await browser.newPage()
     await page.goto(url)
 
-    await new Promise(r => setTimeout(r, 1000)) // sleep for 1 second
+    // sleep for 1 second
+    await new Promise(r => setTimeout(r, 1000))
 
     let links_list = []
     const items = await page.$$(ITEM_CLASSNAME)
@@ -31,12 +32,11 @@ async function run (url) {
     
     let counter = 1
     for (let link of links_list) {
-
         console.log(`Iteration: ${counter}`)
-
         await page.goto(link)
 
-        await new Promise(r => setTimeout(r, 1000))  // sleep for 1 second
+        // sleep for 1 second
+        await new Promise(r => setTimeout(r, 1000))
 
         // getting target data
         const category = await page.$eval(CATEGORY_SELECTOR, el => el.textContent)
@@ -50,7 +50,9 @@ async function run (url) {
             price: price,
             timestamp: Math.floor(Date.now() / 1000)
         }
-        exportData(obj)  // export data to MongoDB 
+
+        // export data to MongoDB 
+        exportData(obj)
         counter ++
     }
 }
