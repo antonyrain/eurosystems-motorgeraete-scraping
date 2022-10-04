@@ -1,6 +1,6 @@
 const Data = require('./dataSchema')
 
-const exportData = (obj) => {
+const savingData = (obj) => {
     try {
         const data = new Data({
             category: obj.category,
@@ -10,10 +10,10 @@ const exportData = (obj) => {
             required: true,
         })
         data.save()
-        console.log('Data saving to database SUCCESS')
+        console.log('Data successfully saved')
     } catch (error) {
         console.error('Data saving to database FAIL')
     }
 }
 
-module.exports = exportData
+module.exports = savingData
