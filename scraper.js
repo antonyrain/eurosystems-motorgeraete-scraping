@@ -58,6 +58,7 @@ async function run (url) {
         } catch(error) {console.error(error)}
         counter ++
     }
+    await browser.close();
 }
 
 connectDB() // mongoDB connection
